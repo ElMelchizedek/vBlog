@@ -36,7 +36,7 @@ jobs:
 
       - uses: oven-sh/setup-bun@v1
       - run: bun install --cwd ./app
-      - run: bun build ./app/src/index.tsx --outdir build/ --target bun --cwd ./app
+      - run: bun build /src/index.tsx --outdir ../build --target bun --cwd ./app
       - run: mkdir revision
       - run: cp -R build/index.js scripts/run.sh appspec.yml revision
       - uses: actions/upload-artifact@v4
