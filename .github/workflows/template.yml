@@ -1,6 +1,6 @@
 name: Build/Deploy
 
-run-name: Build/Deploy by ${{ github.actor}}
+run-name: Build/Deploy by ${{ github.actor }}
 
 # Controls when the workflow will run
 on:
@@ -59,6 +59,8 @@ jobs:
           role-to-assume: arn:aws:iam::851725333784:role/roleGitHubActionsVerlBlog
           role-session-name: roleSessionGitHubActionsVerlBlog
           aws-region: ${{ env.AWS_REGION }}
-      - run: ls
-      - run: aws s3 cp buildOutput.zip s3://${{ env.BUCKET_NAME }}/
-
+      - run: aws deploy push \
+              --application-name appVerlBlog \
+              --description "verlBlog revision" \
+              --s3-location s3://${{ env.BUCKET_NAME }}/appVerlBlog.zip \
+              --source .
