@@ -35,8 +35,10 @@ jobs:
       - uses: actions/checkout@v4
 
       - uses: oven-sh/setup-bun@v1
-      - run: bun install --cwd ./app
-      - run: bun construct --cwd ./app
+      - run: cd app
+      - run: bun install
+      - run: bun construct
+      - run: cd ..
       - run: mkdir revision
       - run: cp -R build/index.js scripts/run.sh appspec.yml revision
       - uses: actions/upload-artifact@v4
