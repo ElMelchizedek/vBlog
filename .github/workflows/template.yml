@@ -37,13 +37,12 @@ jobs:
       - uses: oven-sh/setup-bun@v1
       - run: bun install
       - run: bun construct
-      - uses: actions/checkout@v4
       - run: mkdir revision
       - run: cp -R build/index.js scripts/run.sh appspec.yml revision
       - uses: actions/upload-artifact@v4
         with:
           name: buildOutput
-          path: revision/
+          path: build/index.js
 
     
   deploy:
@@ -55,7 +54,6 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: buildOutput
-      - run: 
       - uses: aws-actions/configure-aws-credentials@v3
         with:
           role-to-assume: arn:aws:iam::851725333784:role/roleGitHubActionsVerlBlog
