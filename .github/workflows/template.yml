@@ -37,15 +37,21 @@ jobs:
       - uses: oven-sh/setup-bun@v1
       - run: bun install --cwd ./app
       - run: bun build ./src/index.tsx --outdir ../build --target bun --cwd ./app
+      - run: tree
+      - run: pwd
       - run: mkdir -p revision/build/
       - run: mkdir revision/scripts/
+      - run: tree
+      - run: pwd
       - run: cp build/index.js revision/build
       - run: cp scripts/run.sh revision/scripts
       - run: cp appspec.yml revision
+      - run: tree
+      - run: pwd
       - uses: actions/upload-artifact@v4
         with:
           name: buildOutput
-          path: revision
+          path: revision/
 
     
   deploy:
@@ -53,7 +59,6 @@ jobs:
     needs: build
     
     steps:
-      - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
         with:
           name: buildOutput
