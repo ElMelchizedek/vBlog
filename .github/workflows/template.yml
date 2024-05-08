@@ -59,10 +59,9 @@ jobs:
           role-to-assume: arn:aws:iam::851725333784:role/roleGitHubActionsVerlBlog
           role-session-name: roleSessionGitHubActionsVerlBlog
           aws-region: ${{ env.AWS_REGION }}
-      - run: ls
       - run: | 
             aws deploy push \
               --application-name appVerlBlog \
               --description "verlBlog revision" \
               --s3-location s3://${{ env.BUCKET_NAME }}/appVerlBlog.zip \
-              --source buildOutput.zip 
+              --source . 
