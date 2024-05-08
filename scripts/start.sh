@@ -1,3 +1,3 @@
 #!/bin/bash
-chmod +x build/execVerlBlog
+chmod +x ./build/execVerlBlog
 ./build/execVerlBlog
