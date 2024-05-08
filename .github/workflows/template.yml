@@ -54,6 +54,7 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: buildOutput
+      - run: ls
       - uses: aws-actions/configure-aws-credentials@v3
         with:
           role-to-assume: arn:aws:iam::851725333784:role/roleGitHubActionsVerlBlog
@@ -64,4 +65,4 @@ jobs:
               --application-name appVerlBlog \
               --description "verlBlog revision" \
               --s3-location s3://${{ env.BUCKET_NAME }}/appVerlBlog.zip \
-              --source . 
+              --source revision 
