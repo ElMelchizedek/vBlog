@@ -37,7 +37,7 @@ jobs:
       - uses: oven-sh/setup-bun@v1
       - run: bun install --cwd ./app
       - run: mkdir -p revision/build/
-      - run: bun build ./stc/index.tsx --compile --target=bun-linux-x64 --outfile ../build/execVerlBlog
+      - run: bun build ./src/index.tsx --compile --target=bun-linux-x64 --outfile ../build/execVerlBlog
       - run: mkdir revision/scripts/
       - run: cp scripts/start.sh scripts/install.sh scripts/beforeInstall.sh revision/scripts
       - run: cp appspec.yml revision
