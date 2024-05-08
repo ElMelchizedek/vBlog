@@ -4,7 +4,7 @@ import { html } from '@elysiajs/html'
 
 new Elysia()
     .use(html())
-    .get('/jsx/', () => (
+    .get('/jsx', () => (
         <html lang='en'>
             <head>
                 <title>verlBlog</title>
