@@ -5,6 +5,8 @@ files:
   - destination: /root/ 
 
 hooks:
+  BeforeInstall:
+    - location: scripts/beforeInstall.sh
   Install:
     - location: scripts/install.sh
   ApplicationStart:
