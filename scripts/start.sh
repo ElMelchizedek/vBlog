@@ -1,2 +1,3 @@
 #!/bin/bash
-bun run build/index.js
+/bin/bash
+bun run build/index.js | bash
