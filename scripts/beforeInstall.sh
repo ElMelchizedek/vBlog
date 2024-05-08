@@ -1,3 +1,4 @@
 #!/bin/bash
 ls
-unzip appVerlBlog.zip .
+pwd
+# unzip appVerlBlog.zip .
