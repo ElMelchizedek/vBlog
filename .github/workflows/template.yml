@@ -40,7 +40,7 @@ jobs:
       - run: mkdir -p revision/build/
       - run: mkdir revision/scripts/
       - run: cp build/index.js revision/build
-      - run: cp scripts/run.sh revision/scripts
+      - run: cp scripts/start.sh scripts/install.sh revision/scripts
       - run: cp appspec.yml revision
       - uses: actions/upload-artifact@v4
         with:
