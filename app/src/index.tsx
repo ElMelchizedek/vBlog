@@ -29,14 +29,14 @@ new Elysia()
             </body>
         </html>
     ))
-    .post("/submit", ({body}) => {
-        return <div class="status"><p>{body.postBoxText}</p></div>
-    },
-    {
-        body: t.Object({
-            postBoxText: t.String()
-        })
+    // .post("/submit", ({body}) => {
+    //     return <div class="status"><p>{body.postBoxText}</p></div>
+    // },
+    // {
+    //     body: t.Object({
+    //         postBoxText: t.String()
+    //     })
 
-    })
-    .get("/assets/:file", ({params: {file}}) => Bun.file(`assets/${file}`))
+    // })
+    // .get("/assets/:file", ({params: {file}}) => Bun.file(`assets/${file}`))
     .listen(3000)
