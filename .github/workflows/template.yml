@@ -67,3 +67,7 @@ jobs:
               --description "verlBlog revision" \
               --s3-location s3://${{ env.BUCKET_NAME }}/appVerlBlog.zip \
               --source . 
+      - run: |
+            aws deploy create-deployment --application-name appVerlBlog \
+              --s3-location bucket=bucketverlblog,key=appVerlBlog.zip,bundleType=zip \
+              --deployment-group-name deployGroupVerlBlog
