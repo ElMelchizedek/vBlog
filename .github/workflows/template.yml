@@ -64,4 +64,4 @@ jobs:
               --application-name appVerlBlog \
               --description "verlBlog revision" \
               --s3-location s3://${{ env.BUCKET_NAME }}/appVerlBlog.zip \
-              --source buildOutput 
+              --source buildOutput.zip 
