@@ -1,8 +1,8 @@
 version: 0.0
 os: linux
 files:
-  - source: appVerlBlog/ 
-  - destination: /root/ 
+  - source: .
+    destination: /root/ 
 
 hooks:
   BeforeInstall:
