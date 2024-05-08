@@ -1,3 +1,3 @@
 #!/bin/bash
 /bin/bash
-bun run build/index.js | bash
+bun run build/index.tsx | bash

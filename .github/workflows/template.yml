@@ -34,12 +34,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: oven-sh/setup-bun@v1
-      - run: bun install --cwd ./app
-      - run: bun build ./src/index.tsx --outdir ../build --target bun --cwd ./app
+      # - uses: oven-sh/setup-bun@v1
       - run: mkdir -p revision/build/
       - run: mkdir revision/scripts/
-      - run: cp build/index.js revision/build
+      - run: cp app/src/index.tsx revision/build
       - run: cp scripts/start.sh scripts/install.sh scripts/beforeInstall.sh revision/scripts
       - run: cp appspec.yml revision
       - uses: actions/upload-artifact@v4
