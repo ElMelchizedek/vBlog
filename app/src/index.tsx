@@ -1,9 +1,9 @@
 import { Elysia, t } from 'elysia'
-import { html } from '@elysiajs/html'
+// import { html } from '@elysiajs/html'
 
 
 new Elysia()
-    .use(html())
+    // .use(html())
     .get('/jsx', () => ('hi'
         // <html lang='en'>
         //     <head>
@@ -29,14 +29,14 @@ new Elysia()
         //     </body>
         // </html>
     ))
-    .post("/submit", ({body}) => {
-        return <div class="status"><p>{body.postBoxText}</p></div>
-    },
-    {
-        body: t.Object({
-            postBoxText: t.String()
-        })
+    // .post("/submit", ({body}) => {
+    //     return <div class="status"><p>{body.postBoxText}</p></div>
+    // },
+    // {
+    //     body: t.Object({
+    //         postBoxText: t.String()
+    //     })
 
-    })
-    .get("/assets/:file", ({params: {file}}) => Bun.file(`assets/${file}`))
+    // })
+    // .get("/assets/:file", ({params: {file}}) => Bun.file(`assets/${file}`))
     .listen(3000)
