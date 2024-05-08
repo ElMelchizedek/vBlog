@@ -37,17 +37,11 @@ jobs:
       - uses: oven-sh/setup-bun@v1
       - run: bun install --cwd ./app
       - run: bun build ./src/index.tsx --outdir ../build --target bun --cwd ./app
-      - run: tree
-      - run: pwd
       - run: mkdir -p revision/build/
       - run: mkdir revision/scripts/
-      - run: tree
-      - run: pwd
       - run: cp build/index.js revision/build
       - run: cp scripts/run.sh revision/scripts
       - run: cp appspec.yml revision
-      - run: tree
-      - run: pwd
       - uses: actions/upload-artifact@v4
         with:
           name: buildOutput
@@ -62,9 +56,6 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: buildOutput
-      - run: ls
-      - run: pwd
-      - run: tree
       - uses: aws-actions/configure-aws-credentials@v3
         with:
           role-to-assume: arn:aws:iam::851725333784:role/roleGitHubActionsVerlBlog
@@ -75,4 +66,4 @@ jobs:
               --application-name appVerlBlog \
               --description "verlBlog revision" \
               --s3-location s3://${{ env.BUCKET_NAME }}/appVerlBlog.zip \
-              --source revision 
+              --source . 
