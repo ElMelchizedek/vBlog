@@ -12,7 +12,7 @@ on:
 env:
   AWS_REGION: "ap-southeast-2"
   ECR_REPOSITORY: "container-repository-verl-blog"
-  ECS_SERVICE: "testVerlBlog"
+  ECS_SERVICE: "devVerlBlog"
   ECS_CLUSTER: "clusterVerlBlog"
   ECS_TASK_DEFINITION: "ecs/devTaskDef.json"
   CONTAINER_NAME: "containerVerlBlog"
