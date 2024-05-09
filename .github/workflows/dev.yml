@@ -3,8 +3,6 @@ name: Dev Code Test
 run-name: Deploying development code to ECS, ${{ github.actor }}
 
 on:
-  push:
-    branches: [ "testECS" ]
   pull_request:
     branches: [ "testECS" ]
   workflow_dispatch:
