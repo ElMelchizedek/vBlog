@@ -1,0 +1,16 @@
+version: 0.0
+os: linux
+files:
+  - source: .
+    destination: /root/ 
+
+hooks:
+  BeforeInstall:
+    - location: scripts/beforeInstall.sh
+      runas: root
+  Install:
+    - location: scripts/install.sh
+      runas: root
+  ApplicationStart:
+    - location: scripts/start.sh
+      runas: root
