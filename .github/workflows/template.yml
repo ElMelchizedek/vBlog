@@ -1,67 +1,67 @@
-name: Build/Deploy
+# name: Build/Deploy
 
-run-name: Build/Deploy by ${{ github.actor }}
+# run-name: Build/Deploy by ${{ github.actor }}
 
-on:
-  push:
-    branches: [ "dev" ]
-  pull_request:
-    branches: [ "dev" ]
-  workflow_dispatch:
+# on:
+#   push:
+#     branches: [ "dev" ]
+#   pull_request:
+#     branches: [ "dev" ]
+#   workflow_dispatch:
 
-env:
-  BUCKET_NAME: "bucketverlblog"
-  AWS_REGION: "ap-southeast-2"
+# env:
+#   BUCKET_NAME: "bucketverlblog"
+#   AWS_REGION: "ap-southeast-2"
 
-permissions:
-  id-token: write
-  contents: read
+# permissions:
+#   id-token: write
+#   contents: read
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
 
-    # defaults:
-      # run:
-        # working-directory: ./app
+#     # defaults:
+#       # run:
+#         # working-directory: ./app
 
-    steps:
-      - uses: actions/checkout@v4
+#     steps:
+#       - uses: actions/checkout@v4
 
-      - uses: oven-sh/setup-bun@v1
-      - run: bun install --cwd ./app
-      - run: bun build ./src/index.tsx --compile --target=bun-linux-x64 --outfile ../build/execVerlBlog --cwd ./app
-      - run: mkdir -p revision/build/
-      - run: cp build/execVerlBlog revision/build/
-      - run: mkdir revision/scripts/
-      - run: cp scripts/start.sh scripts/install.sh scripts/beforeInstall.sh revision/scripts
-      - run: cp appspec.yml revision
-      - uses: actions/upload-artifact@v4
-        with:
-          name: buildOutput
-          path: revision/
+#       - uses: oven-sh/setup-bun@v1
+#       - run: bun install --cwd ./app
+#       - run: bun build ./src/index.tsx --compile --target=bun-linux-x64 --outfile ../build/execVerlBlog --cwd ./app
+#       - run: mkdir -p revision/build/
+#       - run: cp build/execVerlBlog revision/build/
+#       - run: mkdir revision/scripts/
+#       - run: cp scripts/start.sh scripts/install.sh scripts/beforeInstall.sh revision/scripts
+#       - run: cp appspec.yml revision
+#       - uses: actions/upload-artifact@v4
+#         with:
+#           name: buildOutput
+#           path: revision/
 
     
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
+#   deploy:
+#     runs-on: ubuntu-latest
+#     needs: build
     
-    steps:
-      - uses: actions/download-artifact@v4
-        with:
-          name: buildOutput
-      - uses: aws-actions/configure-aws-credentials@v3
-        with:
-          role-to-assume: arn:aws:iam::851725333784:role/roleGitHubActionsVerlBlog
-          role-session-name: roleSessionGitHubActionsVerlBlog
-          aws-region: ${{ env.AWS_REGION }}
-      - run: | 
-            aws deploy push \
-              --application-name appVerlBlog \
-              --description "verlBlog revision" \
-              --s3-location s3://${{ env.BUCKET_NAME }}/appVerlBlog.zip \
-              --source . 
-      - run: |
-            aws deploy create-deployment --application-name appVerlBlog \
-              --s3-location bucket=bucketverlblog,key=appVerlBlog.zip,bundleType=zip \
-              --deployment-group-name deployGroupVerlBlog
+#     steps:
+#       - uses: actions/download-artifact@v4
+#         with:
+#           name: buildOutput
+#       - uses: aws-actions/configure-aws-credentials@v3
+#         with:
+#           role-to-assume: arn:aws:iam::851725333784:role/roleGitHubActionsVerlBlog
+#           role-session-name: roleSessionGitHubActionsVerlBlog
+#           aws-region: ${{ env.AWS_REGION }}
+#       - run: | 
+#             aws deploy push \
+#               --application-name appVerlBlog \
+#               --description "verlBlog revision" \
+#               --s3-location s3://${{ env.BUCKET_NAME }}/appVerlBlog.zip \
+#               --source . 
+#       - run: |
+#             aws deploy create-deployment --application-name appVerlBlog \
+#               --s3-location bucket=bucketverlblog,key=appVerlBlog.zip,bundleType=zip \
+#               --deployment-group-name deployGroupVerlBlog
