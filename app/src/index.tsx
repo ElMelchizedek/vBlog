@@ -1,7 +1,6 @@
 import { Elysia, t } from 'elysia'
 import { html } from '@elysiajs/html'
 
-
 new Elysia()
     .use(html())
     .get('/jsx', () => (
@@ -9,7 +8,7 @@ new Elysia()
             <head>
                 <title>verlBlog</title>
                 <script src="https://unpkg.com/htmx.org@1.9.12"></script>
-                <link href="http://localhost:3000/assets/style.css" rel="stylesheet" />
+                <link href="../assets/style.css" rel="stylesheet" />
             </head>
             <body>
                 <div class="headerTitle">
