@@ -1,0 +1,111 @@
+{
+    "taskDefinitionArn": "arn:aws:ecs:ap-southeast-2:851725333784:task-definition/taskDefinitionVerlBlog:3",
+    "containerDefinitions": [
+        {
+            "name": "containerVerlBlog",
+            "image": "851725333784.dkr.ecr.ap-southeast-2.amazonaws.com/container-repository-verl-blog:latest",
+            "cpu": 0,
+            "memory": 3072,
+            "portMappings": [
+                {
+                    "name": "elysia-js-port",
+                    "containerPort": 3000,
+                    "hostPort": 3000,
+                    "protocol": "tcp",
+                    "appProtocol": "http"
+                }
+            ],
+            "essential": true,
+            "entryPoint": [
+                "/usr/local/bin/docker-entrypoint.sh"
+            ],
+            "command": [
+                "bun",
+                "src/index.tsx"
+            ],
+            "environment": [
+                {
+                    "name": "PATH",
+                    "value": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+                },
+                {
+                    "name": "NODE_ENV",
+                    "value": "production"
+                },
+                {
+                    "name": "BUN_RUNTIME_TRANSPILER_CACHE_PATH",
+                    "value": "0"
+                },
+                {
+                    "name": "BUN_INSTALL_BIN",
+                    "value": "/usr/local/bin"
+                }
+            ],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "workingDirectory": "/home/bun/app",
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-create-group": "true",
+                    "awslogs-group": "/ecs/taskDefinitionVerlBlog",
+                    "awslogs-region": "ap-southeast-2",
+                    "awslogs-stream-prefix": "ecs"
+                }
+            },
+            "systemControls": []
+        }
+    ],
+    "family": "taskDefinitionVerlBlog",
+    "executionRoleArn": "arn:aws:iam::851725333784:role/ecsTaskExecutionRole",
+    "networkMode": "awsvpc",
+    "revision": 3,
+    "volumes": [],
+    "status": "ACTIVE",
+    "requiresAttributes": [
+        {
+            "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+        },
+        {
+            "name": "ecs.capability.execution-role-awslogs"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.ecr-auth"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.17"
+        },
+        {
+            "name": "ecs.capability.execution-role-ecr-pull"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+        },
+        {
+            "name": "ecs.capability.task-eni"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
+        }
+    ],
+    "placementConstraints": [],
+    "compatibilities": [
+        "EC2",
+        "FARGATE"
+    ],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "1024",
+    "memory": "3072",
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "LINUX"
+    },
+    "registeredAt": "2024-05-09T02:14:10.091Z",
+    "registeredBy": "arn:aws:iam::851725333784:user/diomedes",
+    "tags": []
+}
