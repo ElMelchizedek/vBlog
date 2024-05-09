@@ -14,7 +14,7 @@ env:
   ECR_REPOSITORY: "container-repository-verl-blog"
   ECS_SERVICE: "serviceTestVerlBlog"
   ECS_CLUSTER: "clusterTestVerlBlog"
-  ECS_TASK_DEFINITION: "../../taskDefinition.json"
+  ECS_TASK_DEFINITION: "taskDefinition.json"
   CONTAINER_NAME: "containerVerlBlog"
 
 permissions:
