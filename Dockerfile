@@ -6,6 +6,8 @@ COPY app/bun.lockb .
 RUN bun install --production
 
 COPY app/src src
+COPY app/db db
+COPY app/.env .
 COPY app/tsconfig.json .
 COPY app/assets/style.css assets/style.css
 # COPY /../../.aws/credentials ~/.aws/credentials
