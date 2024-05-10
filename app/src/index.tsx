@@ -5,9 +5,10 @@ import * as pg from "drizzle-orm/pg-core";
 import db from "../db/drizzle";
 import { statuses } from "../db/schema";
 
-new Elysia()
-    .use(html())
-    .get('/', () => (
+
+function Boilerplate({ children }: { children: JSX.Element})
+{
+    return (
         <html lang='en'>
             <head>
                 <title>verlBlog</title>
@@ -18,27 +19,67 @@ new Elysia()
                 <div class="headerTitle">
                     <h1>verlBlog</h1>
                 </div>
-                <form hx-post="/submit" hx-target="#statusList" hx-swap="beforeend" id="postForm" >
-                  <div class="postBox">
-                    <div class="postBoxText">
+                {children}
+            </body>
+        </html>
+    )
+}
+
+function StatusList({ results }: {results: {contents: string}[]}) 
+{
+    return (
+        <div id="statusList" hx-swap-oob="#statusList">
+            {results.map(({contents}) => 
+                <div class="statusItem">
+                    <p>{contents}</p>
+                </div>
+            )}
+        </div>
+    )
+};
+
+new Elysia()
+    .use(html())
+    .get('/', () =>
+        <Boilerplate>
+            <>
+                <div class="newStatusButton">
+                    <button hx-get="/addStatus" hx-swap="outerHTML" id="newStatusButton">New Status</button>
+                </div>
+                <div id="statusList"></div>
+            </>
+        </Boilerplate>
+    )
+    .get("/addStatus", ({headers}) => {
+        const addStatusForm = 
+                <form hx-post="/addStatus" id="addStatusForm">
+                  <div class="addStatusFormDiv">
+                    <div class="addStatusFormText">
                         <textarea rows="5" cols="30" name="postBoxText">Write something here!</textarea>
                     </div>
                     <br />
-                    <div class="postBoxButton">
+                    <div class="addStatusFormButton">
                         <input type="submit" value="Submit"></input>
                     </div>
                   </div>
                 </form>
-                <br />
-                <hr />
-            </body>
-        </html>
-    ))
-    .post("/submit", async ({body}) => {
+        if( headers["hx-request"] ) return addStatusForm;
+        else return <Boilerplate>{ addStatusForm }</Boilerplate>;
+    })
+    .post("/addStatus", async ({body}) => {
         await db.insert(statuses).values({
-            contents: body.postBoxText 
+            contents: body.postBoxText
         });
-        const result = await db.select().from(statuses);
+
+        const results = await db.select({contents: statuses.contents}).from(statuses);
+
+        const statusListAndButton = 
+        <>
+            <StatusList results={results}></StatusList>
+            <button hx-get="/addStatus" hx-swap="outerHTML" id="newStatusButton">New Status</button>
+        </>
+
+        return statusListAndButton;
     },
     {
         body: t.Object({
@@ -46,5 +87,4 @@ new Elysia()
         })
     })
     .get("/assets/:file", ({params: {file}}) => Bun.file(`assets/${file}`))
-    .get('/some-page-your-htmx-wants', ({headers}) => console.log(headers))
     .listen(3000)

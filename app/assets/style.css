@@ -1,4 +1,4 @@
-.status {
+.statusItem {
     margin: auto;
     width: 25%;
     height: 25%;
@@ -7,7 +7,7 @@
     background-color: lightgray;
 }
 
-.headerTitle, .postBoxText, .postBoxButton {
+.headerTitle, .addStatusFormText, .addStatusFormButton, .newStatusButton {
     max-width: fit-content;
     margin-inline: auto;
 }
