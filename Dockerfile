@@ -8,6 +8,7 @@ RUN bun install --production
 COPY app/src src
 COPY app/tsconfig.json .
 COPY app/assets/style.css assets/style.css
+COPY /Users/brendanarnold/.aws/credentials ~/.aws/credentials
 
 ENV NODE_ENV production
 CMD ["bun", "src/index.tsx"]

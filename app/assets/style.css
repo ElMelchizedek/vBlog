@@ -7,10 +7,7 @@
     background-color: lightgray;
 }
 
-.headerTitle {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.headerTitle, .postBoxText, .postBoxButton {
+    max-width: fit-content;
+    margin-inline: auto;
 }
