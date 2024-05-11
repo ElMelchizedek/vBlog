@@ -1,5 +1,5 @@
 import {Elysia, t} from 'elysia';
-import {Boilerplate, StatusList, AddStatus, AccountManage} from "../components";
+import {Boilerplate, StatusList, AddStatus,} from "../components/compMain";
 import {statuses} from "../../db/schema";
 import db from "../../db/drizzle";
 
