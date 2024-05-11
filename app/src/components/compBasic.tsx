@@ -28,7 +28,7 @@ export function Landing()
                 <AccountManage />
                 <br />
                 <AddStatus />
-                {getStatuses}
+                {getStatuses()}
         	</>
         </Boilerplate>
     )

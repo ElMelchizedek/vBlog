@@ -30,7 +30,7 @@ export const addStatus = (app: Elysia) => app
             const results = await db.select({contents: statuses.contents, user: statuses.user}).from(statuses);
 
             return <>
-                {getStatuses} 
+                {getStatuses()}
                 <AddStatus />
             </>;
         },
