@@ -1,4 +1,5 @@
 import { AccountManage, AddStatus } from "./compUI"
+import { getStatuses } from "../db/functions/dbfuncGetStatus"
 
 export function Boilerplate({children}: { children: JSX.Element })
 {
@@ -27,7 +28,7 @@ export function Landing()
                 <AccountManage />
                 <br />
                 <AddStatus />
-                <div id="statusList"></div>
+                {getStatuses}
         	</>
         </Boilerplate>
     )

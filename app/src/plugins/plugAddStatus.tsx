@@ -1,7 +1,8 @@
 import {Elysia, t} from 'elysia';
 import {Boilerplate, StatusList, AddStatus,} from "../components/compMain";
-import {statuses} from "../../db/schema";
-import db from "../../db/drizzle";
+import { getStatuses } from '../db/functions/dbfuncGetStatus';
+import {statuses} from "../db/config/schema";
+import db from "../db/config/drizzle";
 
 export const addStatus = (app: Elysia) => app
     .get("/addStatus", ({headers}) => {
@@ -29,7 +30,7 @@ export const addStatus = (app: Elysia) => app
             const results = await db.select({contents: statuses.contents, user: statuses.user}).from(statuses);
 
             return <>
-                <StatusList results={results}></StatusList>
+                {getStatuses} 
                 <AddStatus />
             </>;
         },
