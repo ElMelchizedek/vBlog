@@ -8,7 +8,7 @@ export function ButtonAddStatus()
 export function ButtonAccountManage()
 {
     return (
-        <button hx-get="/accountManage" hx-target="#panelSubHeader" hx-swap="outerHTML" id="accountManageButton" class="button">Manage Account</button>
+        <button hx-get="/accountManage" hx-target="#torso" hx-swap="innerHTML" id="accountManageButton" class="button">Manage Account</button>
     )
 }
 
@@ -16,5 +16,12 @@ export function ButtonAccountLoginRegister()
 {
     return (
         <button hx-get="/registerLogin" hx-swap="outerHTML" id="loginRegisterButton" class="button">Login / Register</button>
+    )
+}
+
+export function ButtonAccountReturnLanding()
+{
+    return (
+        <button hx-get="/" hx-swap="outerHTML" hx-target="#root" id="returnLanding" class="button">Return</button>
     )
 }
