@@ -22,6 +22,6 @@ export function ButtonAccountLoginRegister()
 export function ButtonAccountReturnLanding()
 {
     return (
-        <button hx-get="/" hx-swap="outerHTML" hx-target="#root" id="returnLanding" class="button">Return</button>
+        <a href="/" id="returnLanding" class="button">Return</a>
     )
 }
