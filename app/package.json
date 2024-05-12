@@ -7,6 +7,8 @@
     "construct": "bun build ./src/index.tsx --outdir ../build --target bun"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.574.0",
+    "@aws-sdk/client-secrets-manager": "^3.574.0",
     "@elysiajs/html": "^1.0.2",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.30.10",
@@ -17,7 +19,7 @@
   "devDependencies": {
     "@types/pg": "^8.11.6",
     "bun-types": "latest",
-    "drizzle-kit": "^0.20.18"
+    "drizzle-kit": "^0.21.1"
   },
   "module": "src/index.js"
 }

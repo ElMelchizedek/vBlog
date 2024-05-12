@@ -7,7 +7,11 @@
     background-color: lightgray;
 }
 
-.headerTitle, .addStatusFormText, .addStatusFormButton, .newStatusButton {
+.centeredDiv {
     max-width: fit-content;
     margin-inline: auto;
+}
+
+.nonResizeTextarea {
+    resize: none;
 }

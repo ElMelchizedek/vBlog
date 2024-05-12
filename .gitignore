@@ -2,3 +2,7 @@
 node_modules/
 build/*
 **/.env
+.idea/
+.vscode/
+run.sh
+app/kit/
