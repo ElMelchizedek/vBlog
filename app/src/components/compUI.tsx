@@ -1,17 +1,27 @@
-export function AddStatus()
+export function ButtonAddStatus()
 {
     return (
-        <div class="centeredDiv">
-            <button hx-get="/addStatus" hx-swap="outerHTML" id="newStatusButton">New Status</button>
-        </div>
+        <button hx-get="/addStatus" hx-swap="outerHTML" id="newStatusButton" class="button">New Status</button>
     )
 }
 
-export function AccountManage()
+export function ButtonAccountManage()
 {
     return (
-        <div class="centeredDiv">
-            <button hx-get="/accountManage" hx-swap="outerHTML" id="accountManageButton">Manage Account</button>
-        </div>
+        <button hx-get="/accountManage" hx-target="#torso" hx-swap="innerHTML" id="accountManageButton" class="button">Manage Account</button>
+    )
+}
+
+export function ButtonAccountLoginRegister()
+{
+    return (
+        <button hx-get="/registerLogin" hx-swap="outerHTML" id="loginRegisterButton" class="button">Login / Register</button>
+    )
+}
+
+export function ButtonAccountReturnLanding()
+{
+    return (
+        <a href="/" id="returnLanding" class="button">Return</a>
     )
 }

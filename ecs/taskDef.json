@@ -1,9 +1,9 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:ap-southeast-2:851725333784:task-definition/taskDefinitionVerlBlog:3",
+    "taskDefinitionArn": "arn:aws:ecs:ap-southeast-2:851725333784:task-definition/taskDefinitionVerlBlog:20",
     "containerDefinitions": [
         {
             "name": "containerVerlBlog",
-            "image": "851725333784.dkr.ecr.ap-southeast-2.amazonaws.com/container-repository-verl-blog:latest",
+            "image": "851725333784.dkr.ecr.ap-southeast-2.amazonaws.com/container-repository-verl-blog:45008176e01aa0d9ace349f8a1d9c2acd101a8cd",
             "cpu": 0,
             "memory": 3072,
             "portMappings": [
@@ -51,15 +51,17 @@
                     "awslogs-group": "/ecs/taskDefinitionVerlBlog",
                     "awslogs-region": "ap-southeast-2",
                     "awslogs-stream-prefix": "ecs"
-                }
+                },
+                "secretOptions": []
             },
             "systemControls": []
         }
     ],
     "family": "taskDefinitionVerlBlog",
+    "taskRoleArn": "arn:aws:iam::851725333784:role/ecsTaskRole",
     "executionRoleArn": "arn:aws:iam::851725333784:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
-    "revision": 3,
+    "revision": 20,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
@@ -77,6 +79,9 @@
         },
         {
             "name": "com.amazonaws.ecs.capability.docker-remote-api.1.17"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.task-iam-role"
         },
         {
             "name": "ecs.capability.execution-role-ecr-pull"
@@ -105,7 +110,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2024-05-09T02:14:10.091Z",
+    "registeredAt": "2024-05-12T06:22:10.902Z",
     "registeredBy": "arn:aws:iam::851725333784:user/diomedes",
     "tags": []
 }

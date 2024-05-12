@@ -11,3 +11,14 @@ export function StatusList({results}: { results: { contents: string, user: strin
         </div>
     )
 }
+
+export function FormAddStatus()
+{
+    return (
+        <form hx-post="/addStatus" id="addStatusForm" hx-swap="outerHTML">
+            <textarea rows="5" cols="30" name="addStatusFormContentsText">Write something here!</textarea>
+            <br/>
+            <button id="buttonSubmitForm" class="button">Submit</button>
+        </form>
+    );
+}
