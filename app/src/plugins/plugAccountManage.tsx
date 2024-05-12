@@ -1,7 +1,9 @@
 import { Elysia, t } from 'elysia';
-import { Boilerplate, StatusList, AddStatus, } from "../components/compMain";
+import { Boilerplate, StatusList, ButtonAddStatus, PanelAccountManage } from "../components/compMain";
 
 export const accountManage = (app: Elysia) => app
 .get("/accountManage", () => {
-    console.log("Hello, world!")
+    return (
+        <PanelAccountManage />
+    )
 })

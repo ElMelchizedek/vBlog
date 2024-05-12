@@ -1,4 +1,4 @@
-import { AccountManage, AddStatus } from "./compUI"
+import { ButtonAccountManage, ButtonAddStatus } from "./compUI"
 import { getStatuses } from "../db/functions/dbfuncGetStatus"
 
 export function Boilerplate({children}: { children: JSX.Element })
@@ -11,10 +11,14 @@ export function Boilerplate({children}: { children: JSX.Element })
             <link href="/assets/style.css" rel="stylesheet"/>
         </head>
         <body>
-        <div class="centeredDiv">
-            <h1>verlBlog</h1>
+        <div id="root">
+            <div id="head">
+                <h1>verlBlog</h1>
+            </div>
+            <div id="torso">
+                {children}
+            </div>
         </div>
-        {children}
         </body>
         </html>
     )
@@ -25,10 +29,13 @@ export function Landing()
     return (
         <Boilerplate>
             <>
-                <AccountManage />
-                <br />
-                <AddStatus />
-                {getStatuses()}
+                <div id="shoulders">
+                    <ButtonAccountManage />
+                    <ButtonAddStatus />
+                </div>
+                <div id="chest">
+                    {getStatuses()}
+                </div>
         	</>
         </Boilerplate>
     )
