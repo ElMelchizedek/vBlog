@@ -2,7 +2,6 @@ FROM --platform=linux/amd64 oven/bun
 
 COPY app/package.json .
 COPY app/bun.lockb .
-COPY app/.env .
 
 RUN bun install --production
 

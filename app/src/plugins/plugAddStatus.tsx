@@ -1,7 +1,7 @@
-import {Elysia, t} from 'elysia';
-import {Boilerplate, StatusList, AddStatus,} from "../components/compMain";
+import { Elysia, t } from 'elysia';
+import { Boilerplate, StatusList, AddStatus, } from "../components/compMain";
 import { getStatuses } from '../db/functions/dbfuncGetStatus';
-import {statuses} from "../db/config/schema";
+import { statuses } from "../db/config/schema";
 import db from "../db/config/drizzle";
 
 export const addStatus = (app: Elysia) => app

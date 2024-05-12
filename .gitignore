@@ -5,3 +5,4 @@ build/*
 .idea/
 .vscode/
 run.sh
+app/kit/
