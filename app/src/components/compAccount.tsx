@@ -7,7 +7,7 @@ export function AccountDetails({response} : {response: Array<string> | null })
     {
         return (
             <div id="accountDetails">
-                <p>You have either not logged in previously, or your token has corrupted. Please do so now.</p>
+                <p>You have either not logged in previously or your token has corrupted. Please do so now.</p>
             </div>
         )
     }
@@ -40,5 +40,14 @@ export async function PanelAccountManage({token} : {token: string})
 
 export function PanelLogin()
 {
+    return (
+        <form hx-post="/loginForm" id="loginForm" hx-swap="outerHTML" hx-target="#root">
+            <label for="loginFormUserText">User:</label><br />
+            <input name="loginFormUserText" id="loginFormUserText"></input><br />
+            <label for="loginFormPassText">Pass:</label><br />
+            <input type="password" name="loginFormPassText" id="loginFormPassText"></input><br />
+            <button id="buttonSubmitForm" class="button">Login</button><br />
+        </form>
+    )
 
 }

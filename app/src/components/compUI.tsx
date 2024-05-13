@@ -15,7 +15,7 @@ export function ButtonAccountManage()
 export function ButtonAccountLogin()
 {
     return (
-        <button hx-get="/login" hx-swap="outerHTML" id="loginButton" class="button">Login</button>
+        <button hx-get="/loginForm" hx-target="#torso" hx-swap="innerHTML" id="loginButton" class="button">Login</button>
     )
 }
 

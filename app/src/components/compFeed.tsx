@@ -16,7 +16,7 @@ export function FormAddStatus()
 {
     return (
         <form hx-post="/addStatus" id="addStatusForm" hx-swap="outerHTML">
-            <textarea rows="5" cols="30" name="addStatusFormContentsText">Write something here!</textarea>
+            <textarea rows="5" cols="30" name="addStatusFormContentsText"></textarea>
             <br/>
             <button id="buttonSubmitForm" class="button">Submit</button>
         </form>

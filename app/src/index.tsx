@@ -1,12 +1,13 @@
 import { Elysia } from 'elysia'
 import { html } from '@elysiajs/html'
-import { addStatus, accountManage } from "./plugins/plugMain";
+import { addStatus, accountManage, loginForm } from "./plugins/plugMain";
 import { Landing } from './components/compMain';
 
 new Elysia()
     .use(html())
     .use(addStatus)
     .use(accountManage)
+    .use(loginForm)
     .get('/', () =>
         <Landing />
     )
