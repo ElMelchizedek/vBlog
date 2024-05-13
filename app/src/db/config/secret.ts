@@ -1,11 +1,10 @@
 import { SecretsManagerClient, GetSecretValueCommand } from "@aws-sdk/client-secrets-manager";
 
-const secretName = "secretVerlBlog";
 const secretClient = new SecretsManagerClient({
     region: "ap-southeast-2"
 });
 
-async function getDatabaseCreds()
+async function getSecret(secretName : string)
 {
     try {
         const result = await secretClient.send(
@@ -19,16 +18,25 @@ async function getDatabaseCreds()
         if (result.SecretString == undefined) {
             throw Error("SecretString undefined");
         }
-        const fullResult = JSON.parse(result.SecretString);
-        return {
-            host: fullResult.host,
-            port: fullResult.port,
-            database: fullResult.database,
-            user: fullResult.user,
-            password: fullResult.password
-        }
+        return result.SecretString;
     } catch (error) {
         throw error
 }}
 
-export { getDatabaseCreds }
+export async function getDBSecret()
+{
+    const response = await getSecret("secretVerlBlog")
+    const fullResult = JSON.parse(response);
+    return {
+        host: fullResult.host,
+        port: fullResult.port,
+        database: fullResult.database,
+        user: fullResult.user,
+        password: fullResult.password
+    }
+}
+
+export async function getJWTSecret()
+{
+    return await getSecret("secretJWTVerlBlog");
+}
