@@ -1,4 +1,4 @@
 export { Boilerplate, Landing } from "./compBasic";
 export { StatusList, FormAddStatus } from "./compFeed";
-export { ButtonAccountManage, ButtonAddStatus } from "./compUI";
-export { PanelAccountManage, PanelLogin } from "./compAccount";
+export { ButtonAccountManage, ButtonAddStatus, ButtonAccountLogin, ButtonAccountReturnLanding } from "./compUI";
+export { PanelAccountManage, PanelLogin, AccountDetails, } from "./compAccount";

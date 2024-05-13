@@ -1,7 +1,7 @@
 import { Elysia, t } from 'elysia';
 import { Boilerplate, PanelAccountManage, PanelLogin } from "../components/compMain";
 import { jwt } from "@elysiajs/jwt";
-import { getAccount } from '../db/functions/dbfuncGetAccount';
+import { getAccount } from '../db/functions/dbfuncMain';
 import { getJWTSecret } from '../db/config/secret';
 
 const secret = await getJWTSecret();
@@ -27,17 +27,26 @@ export const loginForm = (app: Elysia) => app
         }
         else 
         {
-            if (!login.value)
-            {
-                const creds = await getAccount(dummy);
-                const newCookie: string = ("login=" + dummy);
-                set.headers["Set-Cookie"] = (newCookie);
-            } else {
-                login.set({
-                    value: dummy
-                });
+            const creds = await getAccount(dummy);
+            if (creds == null) { 
+               return ( 
+                <Boilerplate>
+                    <PanelLogin />
+                </Boilerplate>
+                )
             }
-            return <Boilerplate><PanelAccountManage token={dummy} /></Boilerplate>
+            else {
+                if (!login.value)
+                {
+                    const newCookie: string = ("login=" + dummy);
+                    set.headers["Set-Cookie"] = (newCookie);
+                } else {
+                    login.set({
+                        value: dummy
+                    });
+                }
+                return <Boilerplate><PanelAccountManage token={dummy} /></Boilerplate>
+            }
         }
     },
     {

@@ -1,4 +1,4 @@
-import { drizzle, NodePgDatabase } from 'drizzle-orm/node-postgres';
+import { drizzle } from 'drizzle-orm/node-postgres';
 import { Client } from "pg";
 import { getDBSecret } from './secret';
 

@@ -1,9 +1,8 @@
 import { Elysia, t } from 'elysia';
-import { Boilerplate, ButtonAddStatus, FormAddStatus } from "../components/compMain";
-import { getStatuses } from '../db/functions/dbfuncGetStatus';
+import { Boilerplate, ButtonAddStatus, FormAddStatus, PanelAccountManage } from "../components/compMain";
 import { statuses } from "../db/config/schema";
 import db from "../db/config/drizzle";
-import { getAccount } from '../db/functions/dbfuncGetAccount';
+import { getStatuses, getAccount } from "../db/functions/dbfuncMain";
 
 export const addStatus = (app: Elysia) => app
     .get("/addStatus", ({headers}) => {
@@ -15,15 +14,21 @@ export const addStatus = (app: Elysia) => app
             if (userCreds)
             {
                 const [token, user, name] = userCreds;
-                await db.insert(statuses).values({
-                    user: name,
-                    contents: body.addStatusFormContentsText,
-                });
-
+                if (body.addStatusFormContentsText == "")
+                {
+                    return <FormAddStatus />
+                } else {
+                    await db.insert(statuses).values({
+                        user: name,
+                        contents: body.addStatusFormContentsText,
+                    });
+                }
                 return <>
                     {getStatuses()}
                     <ButtonAddStatus />
                 </>;
+            } else {
+                return <PanelAccountManage token={login.value} />
             }
         },
         {

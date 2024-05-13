@@ -1,5 +1,5 @@
-import { ButtonAccountLogin, ButtonAccountReturnLanding } from "./compUI"
-import { getAccount } from "../db/functions/dbfuncGetAccount";
+import { ButtonAccountLogin, ButtonAccountReturnLanding } from "./compMain"
+import { getAccount } from "../db/functions/dbfuncMain";
 
 export function AccountDetails({response} : {response: Array<string> | null })
 {
