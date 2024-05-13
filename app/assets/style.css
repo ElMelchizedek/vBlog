@@ -124,7 +124,7 @@ a:link, a:visited, a:hover, a:active {
     padding: 10px;
 }
 
-#accountDetails {
+#panelAccountManage {
     display: flex;
     width: fit-content;
     flex-direction: column;
@@ -137,7 +137,7 @@ a:link, a:visited, a:hover, a:active {
     padding: 10px
 }
 
-#panelAccountManage {
+#accountDetails {
     display: flex;
     width: 100%;
     flex-direction: column;
@@ -147,4 +147,21 @@ a:link, a:visited, a:hover, a:active {
 
 #returnLanding {
     margin-left: 7px;
+
+}
+
+#loginForm {
+    display: flex;
+    width: fit-content;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #A0DEFF;
+    border: 5px solid;
+    border-radius: 5px;
+    border-color: #5AB2FF;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 50px;
+    padding-right: 50px;
 }

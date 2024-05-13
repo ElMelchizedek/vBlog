@@ -1,10 +1,10 @@
-import { drizzle, NodePgDatabase } from 'drizzle-orm/node-postgres';
+import { drizzle } from 'drizzle-orm/node-postgres';
 import { Client } from "pg";
-import { getDatabaseCreds } from './secret';
+import { getDBSecret } from './secret';
 
 const client = new Client(
-   await getDatabaseCreds()
-)
+   await getDBSecret()
+);
 
 await client.connect();
 const db = drizzle(client);

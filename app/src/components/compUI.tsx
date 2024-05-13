@@ -12,10 +12,10 @@ export function ButtonAccountManage()
     )
 }
 
-export function ButtonAccountLoginRegister()
+export function ButtonAccountLogin()
 {
     return (
-        <button hx-get="/registerLogin" hx-swap="outerHTML" id="loginRegisterButton" class="button">Login / Register</button>
+        <button hx-get="/loginForm" hx-target="#torso" hx-swap="innerHTML" id="loginButton" class="button">Login</button>
     )
 }
 
