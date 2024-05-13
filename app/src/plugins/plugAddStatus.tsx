@@ -15,8 +15,6 @@ export const addStatus = (app: Elysia) => app
                 contents: body.addStatusFormContentsText,
             });
 
-            const results = await db.select({contents: statuses.contents, user: statuses.user}).from(statuses);
-
             return <>
                 {getStatuses()}
                 <ButtonAddStatus />
