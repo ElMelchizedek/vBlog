@@ -2,12 +2,15 @@ import { Elysia, t } from 'elysia';
 import { Boilerplate, PanelAccountManage, PanelLogin } from "../components/compMain";
 import { jwt } from "@elysiajs/jwt";
 import { getAccount } from '../db/functions/dbfuncGetAccount';
+import { getJWTSecret } from '../db/config/secret';
+
+const secret = await getJWTSecret();
 
 export const loginForm = (app: Elysia) => app
 .use(
     jwt({
         name: "checker",
-        secret: "mangudai"
+        secret: secret 
     })
 )
 .get("/loginForm", async ({headers}) => {
