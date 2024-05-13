@@ -1,5 +1,5 @@
-import { ButtonAccountLogin, ButtonAccountReturnLanding } from "./compMain"
-import { getAccount } from "../db/functions/dbfuncMain";
+import { Boilerplate, ButtonAccountLogin, ButtonAccountReturnLanding, StatusList } from "./compMain"
+import { getAccount, getStatuses, getUser } from "../db/functions/dbfuncMain";
 
 export function AccountDetails({response} : {response: Array<string> | null })
 {
@@ -17,8 +17,32 @@ export function AccountDetails({response} : {response: Array<string> | null })
         <div id="accountDetails">
             <p>Username: {user}</p>
             <p>Display name: {name}</p>
-            <p>Login token: {token}</p>
+            {/* <p>Login token: {token}</p> */}
         </div>
+        )
+    }
+}
+
+export async function PanelAccountStatuses({token} : {token: string})
+{
+    const username = await getUser(token);
+    console.log(`username: ${username}`);
+    if (!username)
+    {
+        console.log("Failed to get username when building user page statusList");
+        return (
+            <></>
+        )
+    } else {
+        const userStatuses = await getStatuses(username);
+        const html = <>
+            {await userStatuses}
+        </>
+        console.log(`statuses: ${html}`);
+        return (
+            <>
+                {await html}
+            </>
         )
     }
 }
@@ -28,13 +52,16 @@ export async function PanelAccountManage({token} : {token: string})
     const dbResponse = await getAccount(token);
 
     return (
-        <div id="panelAccountManage">
-            <AccountDetails response={dbResponse} />
-            <div id="buttonsAccount">
-                <ButtonAccountLogin />
-                <ButtonAccountReturnLanding />
+        <>
+            <div id="panelAccountManage">
+                <AccountDetails response={dbResponse} />
+                <div id="buttonsAccount">
+                    <ButtonAccountLogin />
+                    <ButtonAccountReturnLanding />
+                </div>
             </div>
-        </div>
+            <PanelAccountStatuses token={token} />
+        </>
     )
 }
 

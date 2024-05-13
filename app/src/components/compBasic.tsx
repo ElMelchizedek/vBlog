@@ -13,7 +13,7 @@ export function Boilerplate({children}: { children: JSX.Element })
         <body>
         <div id="root">
             <div id="head">
-                <h1>verlBlog</h1>
+                <a href="/"><h1>verlBlog</h1></a>
             </div>
             <div id="torso">
                 {children}
@@ -34,7 +34,7 @@ export function Landing()
                     <ButtonAddStatus />
                 </div>
                 <div id="chest">
-                    {getStatuses()}
+                    {getStatuses("any")}
                 </div>
         	</>
         </Boilerplate>

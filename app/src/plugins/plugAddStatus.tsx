@@ -24,7 +24,7 @@ export const addStatus = (app: Elysia) => app
                     });
                 }
                 return <>
-                    {getStatuses()}
+                    {getStatuses("any")}
                     <ButtonAddStatus />
                 </>;
             } else {
