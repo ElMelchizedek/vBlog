@@ -1,9 +1,9 @@
-import { Elysia, t } from 'elysia';
-import { Boilerplate, StatusList, ButtonAddStatus, PanelAccountManage } from "../components/compMain";
+import { Elysia } from 'elysia';
+import { Boilerplate, PanelAccountManage } from "../components/compMain";
+import { jwt } from "@elysiajs/jwt";
 
 export const accountManage = (app: Elysia) => app
-.get("/accountManage", () => {
-    return (
-        <PanelAccountManage />
-    )
+.get("/accountManage", async ({headers, set, cookie: { login }}) => {
+    if (headers["hx-request"]) return <PanelAccountManage token={login.value} />
+    else return <Boilerplate><PanelAccountManage token={login.value}/></Boilerplate>
 })
