@@ -1,5 +1,5 @@
-import { ButtonAccountManage, ButtonAddStatus } from "./compUI"
-import { getStatuses } from "../db/functions/dbfuncGetStatus"
+import { ButtonAccountManage, ButtonAddStatus } from "./compMain"
+import { getStatuses } from "../db/functions/dbfuncMain"
 
 export function Boilerplate({children}: { children: JSX.Element })
 {
