@@ -1,7 +1,7 @@
-export function StatusList({results}: { results: { contents: string, user: string }[] })
+export function StatusList({results, swap} : { results : { contents: string, user: string }[], swap : object })
 {
     return (
-        <div id="statusList" hx-swap-oob="#statusList">
+        <div id="statusList" {...swap}>
             {results.map(({contents, user}) =>
                 <div class="statusItem">
                     <p>{contents}</p>

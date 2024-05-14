@@ -10,7 +10,7 @@ export async function getUser(argToken: string)
     {
         const values = Object.values(row);
         if (values.find((element) => element == argToken)) { 
-            match = row.user;
+            match = row.name;
         }
     }
 

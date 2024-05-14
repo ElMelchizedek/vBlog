@@ -23,34 +23,17 @@ export function AccountDetails({response} : {response: Array<string> | null })
     }
 }
 
-export async function PanelAccountStatuses({token} : {token: string})
+export async function PanelAccountManage({token} : {token: string}) 
 {
+    const dbResponse = await getAccount(token);
     const username = await getUser(token);
-    console.log(`username: ${username}`);
     if (!username)
     {
         console.log("Failed to get username when building user page statusList");
         return (
-            <></>
-        )
-    } else {
-        const userStatuses = await getStatuses(username);
-        const html = <>
-            {await userStatuses}
-        </>
-        console.log(`statuses: ${html}`);
-        return (
-            <>
-                {await html}
-            </>
+            <p>user page statuses get fail</p>
         )
     }
-}
-
-export async function PanelAccountManage({token} : {token: string}) 
-{
-    const dbResponse = await getAccount(token);
-
     return (
         <>
             <div id="panelAccountManage">
@@ -60,7 +43,7 @@ export async function PanelAccountManage({token} : {token: string})
                     <ButtonAccountReturnLanding />
                 </div>
             </div>
-            <PanelAccountStatuses token={token} />
+            {await getStatuses(username)}
         </>
     )
 }
