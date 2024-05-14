@@ -1,14 +1,14 @@
 export function ButtonAddStatus()
 {
     return (
-        <button hx-get="/addStatus" hx-swap="outerHTML" id="newStatusButton" class="button">New Status</button>
+        <button hx-get="/addStatus" hx-swap="outerHTML" id="newStatusButton" class="button">Post</button>
     )
 }
 
 export function ButtonAccountManage()
 {
     return (
-        <button hx-get="/accountManage" hx-target="#torso" hx-swap="innerHTML" id="accountManageButton" class="button">Manage Account</button>
+        <button hx-get="/accountManage" hx-target="#torso" hx-swap="innerHTML" id="accountManageButton" class="button">Account</button>
     )
 }
 

@@ -1,5 +1,5 @@
-import { ButtonAccountLogin, ButtonAccountReturnLanding } from "./compMain"
-import { getAccount } from "../db/functions/dbfuncMain";
+import { Boilerplate, ButtonAccountLogin, ButtonAccountReturnLanding, StatusList } from "./compMain"
+import { getAccount, getStatuses, getUser } from "../db/functions/dbfuncMain";
 
 export function AccountDetails({response} : {response: Array<string> | null })
 {
@@ -17,7 +17,7 @@ export function AccountDetails({response} : {response: Array<string> | null })
         <div id="accountDetails">
             <p>Username: {user}</p>
             <p>Display name: {name}</p>
-            <p>Login token: {token}</p>
+            {/* <p>Login token: {token}</p> */}
         </div>
         )
     }
@@ -26,15 +26,25 @@ export function AccountDetails({response} : {response: Array<string> | null })
 export async function PanelAccountManage({token} : {token: string}) 
 {
     const dbResponse = await getAccount(token);
-
+    const username = await getUser(token);
+    if (!username)
+    {
+        console.log("Failed to get username when building user page statusList");
+        return (
+            <p>user page statuses get fail</p>
+        )
+    }
     return (
-        <div id="panelAccountManage">
-            <AccountDetails response={dbResponse} />
-            <div id="buttonsAccount">
-                <ButtonAccountLogin />
-                <ButtonAccountReturnLanding />
+        <>
+            <div id="panelAccountManage">
+                <AccountDetails response={dbResponse} />
+                <div id="buttonsAccount">
+                    <ButtonAccountLogin />
+                    <ButtonAccountReturnLanding />
+                </div>
             </div>
-        </div>
+            {await getStatuses(username)}
+        </>
     )
 }
 

@@ -1,6 +1,6 @@
 import { Elysia } from 'elysia'
 import { html } from '@elysiajs/html'
-import { addStatus, accountManage, loginForm } from "./plugins/plugMain";
+import { addStatus, accountManage, loginForm, userPage } from "./plugins/plugMain";
 import { Landing } from './components/compMain';
 
 new Elysia()
@@ -8,7 +8,8 @@ new Elysia()
     .use(addStatus)
     .use(accountManage)
     .use(loginForm)
-    .get('/', () =>
+    .use(userPage)
+    .get('/', () => 
         <Landing />
     )
     .get("/assets/:file", ({params: {file}}) => Bun.file(`assets/${file}`))
