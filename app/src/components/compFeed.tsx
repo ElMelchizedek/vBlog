@@ -5,7 +5,7 @@ export function StatusList({results, swap} : { results : { contents: string, use
             {results.map(({contents, user}) =>
                 <div class="statusItem">
                     <p>{contents}</p>
-                    <b><p>{user}</p></b>
+                    <a href={"/user?name=" + user}><b><p>{user}</p></b></a>
                 </div>
             )}
         </div>
