@@ -7,7 +7,7 @@ export const userPage = (app: Elysia) => app
     return (
         <Boilerplate>
             <>
-            {getStatuses(query.name)}
+            {getStatuses(query.name, true)}
             </>
         </Boilerplate>
     )

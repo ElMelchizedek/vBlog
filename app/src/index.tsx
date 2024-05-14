@@ -1,6 +1,6 @@
 import { Elysia } from 'elysia'
 import { html } from '@elysiajs/html'
-import { addStatus, accountManage, loginForm, userPage } from "./plugins/plugMain";
+import { addStatus, accountManage, loginForm, userPage, getDeleteStatus } from "./plugins/plugMain";
 import { Landing } from './components/compMain';
 
 new Elysia()
@@ -9,6 +9,7 @@ new Elysia()
     .use(accountManage)
     .use(loginForm)
     .use(userPage)
+    .use(getDeleteStatus)
     .get('/', () => 
         <Landing />
     )

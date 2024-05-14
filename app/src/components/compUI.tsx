@@ -25,3 +25,10 @@ export function ButtonAccountReturnLanding()
         <a href="/" id="returnLanding" class="button">Return</a>
     )
 }
+
+export function ButtonDeleteStatus({onAccountPage, id} : {onAccountPage : boolean, id : number})
+{
+    let html : JSX.Element = "";
+    if (onAccountPage) { html = <button hx-get={`/deleteStatus?name=${id}`} hx-swap="outerHTML" hx-target={`#status${id}`} id="deleteStatusButton" class="button">Delete</button> }
+    return ( html )
+}
