@@ -14,6 +14,7 @@ env:
   ECS_CLUSTER: "clusterVerlBlog"
   ECS_TASK_DEFINITION: "ecs/taskDef.json"
   CONTAINER_NAME: "containerVerlBlog"
+  IMAGE_NAME: "imageVerlBlog"
 
 permissions:
   id-token: write
