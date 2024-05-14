@@ -34,7 +34,7 @@ export function Landing()
                     <ButtonAddStatus />
                 </div>
                 <div id="chest">
-                    {getStatuses("any")}
+                    {getStatuses("any", false)}
                 </div>
         	</>
         </Boilerplate>

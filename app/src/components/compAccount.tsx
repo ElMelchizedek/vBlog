@@ -17,7 +17,7 @@ export function AccountDetails({response} : {response: Array<string> | null })
         <div id="accountDetails">
             <p>Username: {user}</p>
             <p>Display name: {name}</p>
-            {/* <p>Login token: {token}</p> */}
+            <p>Login token: {token}</p>
         </div>
         )
     }
@@ -25,14 +25,12 @@ export function AccountDetails({response} : {response: Array<string> | null })
 
 export async function PanelAccountManage({token} : {token: string}) 
 {
-    const dbResponse = await getAccount(token);
+    let dbResponse = await getAccount(token);
     const username = await getUser(token);
     if (!username)
     {
         console.log("Failed to get username when building user page statusList");
-        return (
-            <p>user page statuses get fail</p>
-        )
+        dbResponse = null;
     }
     return (
         <>
@@ -43,7 +41,7 @@ export async function PanelAccountManage({token} : {token: string})
                     <ButtonAccountReturnLanding />
                 </div>
             </div>
-            {await getStatuses(username)}
+            {await getStatuses(username, true)}
         </>
     )
 }
