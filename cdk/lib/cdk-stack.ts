@@ -11,42 +11,42 @@ export class CdkStack extends cdk.Stack {
     super(scope, id, props);
 
 
-    const vpc = new ec2.Vpc(this, "vpcTest2", {
+    const vpc = new ec2.Vpc(this, "vpcTest", {
       createInternetGateway: true,
 
       maxAzs: 3
     });
     
-    const securityGroup = new ec2.SecurityGroup(this, "securityGroupTest2", {
+    const securityGroup = new ec2.SecurityGroup(this, "securityGroupTest", {
       vpc,
       allowAllOutbound: true
     })
     securityGroup.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(3000));
     securityGroup.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(5432));
 
-    const cluster = new ecs.Cluster(this, "clusterTest2", {
+    const cluster = new ecs.Cluster(this, "clusterTest", {
       vpc: vpc
     });
 
-    const execRole = new iam.Role(this, "taskExecutionRoleTest2", {
+    const execRole = new iam.Role(this, "taskExecutionRoleTest", {
       assumedBy: new iam.ServicePrincipal("ecs-tasks.amazonaws.com"),
     });
     execRole.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName("AmazonEC2ContainerRegistryPowerUser"));
 
-    const taskRole = new iam.Role(this, "taskRoleTest2", {
+    const taskRole = new iam.Role(this, "taskRoleTest", {
       assumedBy: new iam.ServicePrincipal("ecs-tasks.amazonaws.com")
     });
     taskRole.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName("AdministratorAccess")) 
     // I know this is bad practice, but I don't have time to figure out the proper policy.
 
-    const taskDef = new ecs.FargateTaskDefinition(this, "taskDefTest2", {
-      family: "familyTaskDefTest2",
+    const taskDef = new ecs.FargateTaskDefinition(this, "taskDefTest", {
+      family: "familyTaskDefTest",
       executionRole: execRole,
       taskRole: taskRole,
     });
-    taskDef.addContainer("imageVerlBlogTest2", {
+    taskDef.addContainer("imageVerlBlogTest", {
       image: ecs.ContainerImage.fromAsset(path.resolve(__dirname, "../../")),
-      containerName: "containerVerlBlogTest2",
+      containerName: "containerVerlBlogTest",
       portMappings: 
       [
         {
@@ -74,7 +74,7 @@ export class CdkStack extends cdk.Stack {
       "workingDirectory": "/home/bun/app",
     });
 
-    const service = new ecsPatterns.ApplicationLoadBalancedFargateService(this, "fargateServiceTest2", {
+    const service = new ecsPatterns.ApplicationLoadBalancedFargateService(this, "fargateServiceTest", {
       cluster: cluster,
       cpu: 1024,
       desiredCount: 1,
