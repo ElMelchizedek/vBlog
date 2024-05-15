@@ -7,7 +7,7 @@ verlBlog is a microblogging web application designed to be hosted on Amazon Web 
 * Frontend: HTMX, HTML, CSS 
 * Database: Postgres hosted on RDS, interfaced from the server with Drizzle
 
-## Installation
+## Installation (Untested)
 
 ```shell
 git clone https://github.com/TheVerl/verlBlog.git
