@@ -34,6 +34,13 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
+
+      - name: CDK bootstrap
+        uses: youyo/aws-cdk-github-actions@v2
+        with:
+          cdk_subcommand: "bootstrap"
+          actions_comment: false
+          working_dir: "cdk/"
      
       - name: CDK diff
         uses: youyo/aws-cdk-github-actions@v2
@@ -46,12 +53,6 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: $AWS_REGION
       
-      - name: CDK bootstrap
-        uses: youyo/aws-cdk-github-actions@v2
-        with:
-          cdk_subcommand: "bootstrap"
-          actions_comment: false
-          working_dir: "cdk/"
 
       - name: CDK deploy
         uses: youyo/aws-cdk-github-actions@v2
