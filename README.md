@@ -107,3 +107,4 @@ plugin had become available for MySQL, I would have used that database instead.
 * Refactor CSS so that the website looks much better. Especially prescient to add animations.
 * Allow user to delete their own posts on the main page feed.
 * Automate the installation process.
+* Clean up code, add comments.
