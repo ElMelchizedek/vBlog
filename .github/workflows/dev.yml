@@ -9,11 +9,7 @@ on:
 
 env:
   AWS_REGION: "ap-southeast-2"
-  ECR_REPOSITORY: "container-repository-verl-blog"
-  ECS_SERVICE: "devServiceVerlBlog"
-  ECS_CLUSTER: "clusterVerlBlog"
-  ECS_TASK_DEFINITION: "ecs/taskDef.json"
-  CONTAINER_NAME: "containerVerlBlog"
+  STACK_NAME: "stackVerlBlog"
 
 permissions:
   id-token: write
@@ -60,7 +56,7 @@ jobs:
         uses: youyo/aws-cdk-github-actions@v2
         with:
           cdk_subcommand: "deploy"
-          cdk_stack: "stackVerlBlogTest"
+          cdk_stack: "stackVerlBlog"
           cdk_args: "--require-approval never"
           actions_comment: false
           working_dir: "cdk/"
@@ -80,33 +76,3 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: $AWS_REGION
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # - name: Login to ECR
-      #   id: login-ecr
-      #   uses: aws-actions/amazon-ecr-login@62f4f872db3836360b72999f4b87f1ff13310f3a
-
-      # - name: Build + tag + push image to ECR
-      #   id: build-image
-      #   env:
-      #     ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-      #     IMAGE_TAG: ${{ github.sha }}
-      #   run: |
-      #     docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-      #     docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-      #     echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
-
-      # - name: Fill in new image ID in ECS task definition
-      #   id: task-def
-      #   uses: aws-actions/amazon-ecs-render-task-definition@c804dfbdd57f713b6c079302a4c01db7017a36fc
-      #   with:
-      #     task-definition: ${{ env.ECS_TASK_DEFINITION }}
-      #     container-name: ${{ env.CONTAINER_NAME }}
-      #     image: ${{ steps.build-image.outputs.image }}
-
-      # - name: Deploy ECS task definition
-      #   uses: aws-actions/amazon-ecs-deploy-task-definition@df9643053eda01f169e64a0e60233aacca83799a
-      #   with:
-      #     task-definition: ${{ steps.task-def.outputs.task-definition }}
-      #     service: ${{ env.ECS_SERVICE }}
-      #     cluster: ${{ env.ECS_CLUSTER }}
-          # wait-for-service-stability: true
