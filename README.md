@@ -23,7 +23,7 @@ Note that this will not have database support. A dummy local database feature co
 * Place all database credentials in a secret in SecretManager as so:
 
 ```
-host: your-database.some-string.ap-southeast-2.rds.amazonaws.com
+host: your-database.some-string.your-region.rds.amazonaws.com
 port: 5432
 database: postgres
 user: postgres
@@ -106,3 +106,4 @@ plugin had become available for MySQL, I would have used that database instead.
 * Include RDS database in the automated CDK process.
 * Refactor CSS so that the website looks much better. Especially prescient to add animations.
 * Allow user to delete their own posts on the main page feed.
+* Automate the installation process.
