@@ -11,13 +11,19 @@ TODO
 * Javascript runtime: Bun
 * Backend: ElysiaJS
 * Frontend: KitaJS' implementation of HTMX, that comes with ElysiaJS
-* Database: Postgres, interfaced from the server with Drizzle
+* Database: Postgres hosted on RDS, interfaced from the server with Drizzle
 
 ### How the application is deployed
-The application is deployed with CDK as a Docker container running on an ECS cluster, with all the other expected resources like a VPC and a Security Group set up as well. An exception to
-that would be the SecretManager, which due to its sensitive nature must be deployed manually and the code edited to direct to it. If one wants to have a two-stage deployment process, with
+The application is deployed with CDK as a Docker container running on an ECS cluster, with most other expected resources like a VPC and a Security Group set up as well. 
+
+An exception to that would be the SecretManager, which due to its sensitive nature must be deployed manually and the code edited to direct to it. 
+
+Another exception would be the RDS instance, which must be set up by hand on AWS.
+
+If one wants to have a two-stage deployment process, with
 seperate development and production services on the cluster, I would recommend using the CDK to deploy the development service and then do the production mnanually: all the requirements for
 a manual deployment should come with the CDK's generated stack.
+
 
 ### Why choices were made regarding certain technologies
 Initially I had desired to use an EC2 instance that would run code automatically fed to it by a CodePipeline using CodeCommit/Build/Deploy. However, I soon discovered that the Amazon CI/CD
@@ -33,5 +39,4 @@ Postgres was used as a consequence of Drizzle: The easy plugin for Drizzle for u
 plugin had become available for MySQL, I would have used that database instead.
 
 ## Issues / Features that could be added
-
 TODO
