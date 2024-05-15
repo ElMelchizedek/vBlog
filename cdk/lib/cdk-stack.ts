@@ -12,6 +12,8 @@ export class CdkStack extends cdk.Stack {
 
 
     const vpc = new ec2.Vpc(this, "vpcTest2", {
+      createInternetGateway: true,
+
       maxAzs: 3
     });
     
@@ -20,11 +22,7 @@ export class CdkStack extends cdk.Stack {
       allowAllOutbound: true
     })
     securityGroup.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(3000));
-    // const securityGroupInterface = ec2.SecurityGroup.fromLookupByName(this, 
-    //   "securityGroupInterfaceTest2", 
-    //   "securityGroupTest2",
-    //   vpc
-    // );
+    securityGroup.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(5432));
 
     const cluster = new ecs.Cluster(this, "clusterTest2", {
       vpc: vpc
@@ -76,14 +74,15 @@ export class CdkStack extends cdk.Stack {
       "workingDirectory": "/home/bun/app",
     });
 
-    new ecsPatterns.ApplicationLoadBalancedFargateService(this, "fargateServiceTest2", {
+    const service = new ecsPatterns.ApplicationLoadBalancedFargateService(this, "fargateServiceTest2", {
       cluster: cluster,
       cpu: 1024,
       desiredCount: 1,
       memoryLimitMiB: 3072,
       publicLoadBalancer: true,
       taskDefinition: taskDef,
-      securityGroups: [securityGroup]
+      securityGroups: [securityGroup],
+      assignPublicIp: true
     })
 
   }
