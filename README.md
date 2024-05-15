@@ -1,11 +1,35 @@
 # verlBlog
 verlBlog is a microblogging web application designed to be hosted on Amazon Web Services.
 
-## Installation
-TODO
+## Installation / Usage
+### For local testing:
 
-## Usage
-TODO
+```shell
+git clone https://github.com/TheVerl/verlBlog.git
+cd verlBlog
+cd app
+curl -fsSL https://bun.sh/install | bash
+bun dev
+```
+
+### For deploying to AWS:
+* Set up RDS database
+* Place all database credentials in a secret in SecretManager
+
+```shell
+git clone https://github.com/TheVerl/verlBlog.git
+```
+
+Edit line secret.ts in src/db/config/ so that it uses your chosen secret name
+(default is "secretVerlBlog")
+
+Setup Github Actions Secrets "AWS_ACCESS_KEY_ID", "AWS_ACCOUNT_ID", and
+"AWS_SECRET_ACCESS_KEY", to be used by the workflow.
+
+Then push your modified repository to git, and run the "Dev Code Test" workflow.
+
+If everything works out, you should have a running testing container on AWS. You can then
+manually set up a production service from that.
 
 ## Technologies
 * Javascript runtime: Bun
@@ -21,7 +45,7 @@ An exception to that would be the SecretManager, which due to its sensitive natu
 Another exception would be the RDS instance, which must be set up by hand on AWS.
 
 If one wants to have a two-stage deployment process, with
-seperate development and production services on the cluster, I would recommend using the CDK to deploy the development service and then do the production mnanually: all the requirements for
+separate development and production services on the cluster, I would recommend using the CDK to deploy the development service and then do the production mnanually: all the requirements for
 a manual deployment should come with the CDK's generated stack.
 
 
@@ -39,4 +63,5 @@ Postgres was used as a consequence of Drizzle: The easy plugin for Drizzle for u
 plugin had become available for MySQL, I would have used that database instead.
 
 ## Issues / Features that could be added
-TODO
+* Include RDS database in the automated CDK process.
+* Refactor CSS so that the website looks much better.
