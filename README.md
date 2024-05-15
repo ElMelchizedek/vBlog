@@ -19,7 +19,7 @@ bun dev
 
 Note that this will not have database support. A dummy local database feature could be implemented for testing, but for now there isn't any such thing. You will need to follow the proceeding steps for a functioning database.
 
-* Set up RDS database
+* Set up RDS database instance.
 * Place all database credentials in a secret in SecretManager as so:
 
 ```
