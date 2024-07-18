@@ -1,5 +1,5 @@
-# verlBlog
-verlBlog is a microblogging web application designed to be hosted on Amazon Web Services.
+# vBlog
+vBlog is a microblogging web application designed to be hosted on Amazon Web Services.
 
 ## Technologies
 * Javascript runtime: Bun
@@ -10,8 +10,8 @@ verlBlog is a microblogging web application designed to be hosted on Amazon Web 
 ## Installation (Untested)
 
 ```shell
-git clone https://github.com/TheVerl/verlBlog.git
-cd verlBlog
+git clone https://github.com/ElMechizedek/vBlog.git
+cd vBlog
 cd app
 curl -fsSL https://bun.sh/install | bash
 bun dev
@@ -37,10 +37,10 @@ yoursecret
 * Continue on with these commands:
 
 ```shell
-git clone https://github.com/TheVerl/verlBlog.git
+git clone https://github.com/ElMelchizedek/vBlog.git
 ```
 
-* Edit the two lines secret.ts calling `getSecret()` in src/db/config/ so that it uses your chosen secret name for both your database and JWT (defaulta are "secretVerlBlog" and "secretJWTVerlBlog" respectively).
+* Edit the two lines secret.ts calling `getSecret()` in src/db/config/ so that it uses your chosen secret name for both your database and JWT (defaulta are "secretvBlog" and "secretJWTvBlog" respectively).
 
 * Setup Github Actions Secrets "AWS_ACCESS_KEY_ID", "AWS_ACCOUNT_ID", and
 "AWS_SECRET_ACCESS_KEY", to be used by the workflow.
@@ -59,7 +59,7 @@ HEADER:
 }
 PAYLOAD:
 {
-    "iss": "verlBlog"
+    "iss": "vBlog"
     "sub": "usernamepassword" (this is a concatenated string)
 }
 VERIFY SIGNATURE:
